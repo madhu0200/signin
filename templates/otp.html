@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>otp</title>
+
+</head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+          crossorigin="anonymous">
+<body>
+{% for message in messages %}
+            <div class="alert alert-{{message.tags}}" role="alert">
+                    <p> {{ message }} </p>
+            </div>
+    {% endfor %}
+<form href="{% url 'otp' %}" method="POST">
+    <fieldset>
+        <legend>otp verification</legend>
+        <input type="text" placeholder="{{email}}" disabled>
+        <input type="number" maxlength="6" minlength="6" required>
+    </fieldset>
+</form>
+</body>
+</html>

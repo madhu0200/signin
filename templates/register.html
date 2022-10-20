@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>registration</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+          crossorigin="anonymous">
+</head>
+<style>
+    .divnames
+    {
+        display: inline-flex;
+    }
+.div1{
+        display: inline-block;
+    }
+.form-control
+{
+    margin: 2%;
+}
+form
+{
+text-align:center;
+}
+</style>
+<body>
+
+    {% for message in messages %}
+            <div class="alert alert-{{message.tags}}" role="alert">
+                    <p> {{ message }} </p>
+            </div>
+    {% endfor %}
+        
+
+
+    <form action="{% url 'register' %}" method="post" class="form">
+        <fieldset><legend>register</legend>
+            <div class="div1">
+                {% csrf_token %}
+                <div class="div1 divnames">
+                    <input type="text" class="form-control" placeholder="First Name" name="fname" id="fname"required >
+                    <input type="text" class="form-control" placeholder="Last Name" name="lname" id="lname" required>
+                </div>
+                <input type="email" class="form-control" name="email" id="email" placeholder="Email address" pattern="[a-zA-A0-9.+%-_]+@[a-z]{2,}+\.[a-z]{2,}$" required>
+                <input type="password" class="form-control" name="password" id="password" placeholder="password.." required>
+                <input type="password"  class="form-control" name="password2" id="password2" placeholder="confirm password.." required>
+                <button class="btn btn-primary" type="submit">submit</button>
+            </div>
+        </fieldset>
+        <span>Already have an account <a href="{% url 'signin' %}">signin</a></span>
+    </form>
+
+
+</body>
+</html>

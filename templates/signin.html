@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <title>registration</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+          crossorigin="anonymous">
+</head>
+<style>
+    .form
+    {
+        margin-left: 40%;
+    }
+.div1{
+        display: inline-block;
+    }
+.form-control
+{
+    margin: 2%;
+}
+</style>
+</style>
+<body>
+    {% for message in messages %}
+            <div class="alert alert-{{message.tags}}" role="alert">
+                    <p> {{ message }} </p>
+            </div>
+    {% endfor %}
+    
+    {% csrf_token %}
+    <form class="form" method="post" action="{% url 'signin' %}">
+        <fieldset>
+            <div class="col div1">
+                {% csrf_token %}
+                <input type="radio" class="form-check-input" name="admin" id="admin" value="admin" >
+                <label for="admin"  class="form-check-label">admin</label>
+                <input type="radio" class="form-check-input" name="admin" id="user" value="user" >
+                <label for="user"  class="form-check-label">user</label>
+                <input type="text" class="form-control" name="username" id="username" placeholder="User name." required>
+                <input type="email" class="form-control" name="email" id="email" placeholder="Email address" pattern="[a-zA-A0-9.+%-_]+@[a-z]{2,}+\.[a-z]{2,}$" required>
+                <input type="password" class="form-control" name="password" id="password" placeholder="password.." required minlength="8">
+            </div>
+            <div>
+            <button class="btn btn-primary" type="submit">submit</button>
+        </div>
+        </fieldset>
+    </form>
+    <div>
+        
+    </div>
+</body>
+</html>
